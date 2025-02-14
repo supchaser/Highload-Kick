@@ -51,3 +51,19 @@
 |     45-54     |        7.64      |
 |     55-64     |        3.89      |
 |      65+      |        2.32      |
+
+ТЕСТ 
+<table>
+  <tr>
+    <th style="text-align:center;">Страна</th>
+    <th style="text-align:center;">Пользователи (%)</th>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Турция</td>
+    <td style="text-align:center;">19.32</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">США</td>
+    <td style="text-align:center;">14.97</td>
+  </tr>
+</table>
