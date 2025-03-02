@@ -202,9 +202,11 @@ pie
 При выборе конкретного города в стране нужно опираться на распределение числа жителей по городам [luminocity3d](https://luminocity3d.org/WorldPopDen/#3/20.00/10.00).
 
 1. Турция и европейские страны:
+   
 ![image](https://github.com/user-attachments/assets/1977f4e3-2087-4e65-b907-d705e41c1835)
 
 2. США:
+   
 ![image](https://github.com/user-attachments/assets/96d2988f-e256-491f-acc7-06ac7b14da97)
 
 3. Южная Америка:
