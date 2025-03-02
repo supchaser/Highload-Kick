@@ -208,6 +208,7 @@ pie
 ![image](https://github.com/user-attachments/assets/96d2988f-e256-491f-acc7-06ac7b14da97)
 
 3. Южная Америка:
+
 ![image](https://github.com/user-attachments/assets/7d387b6d-f260-461b-bd8c-4053f084e1d9)
 
 Общая карта расположения ДЦ: 
