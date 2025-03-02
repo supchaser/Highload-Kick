@@ -202,7 +202,17 @@ pie
 При выборе конкретного города в стране нужно опираться на распределение числа жителей по городам [luminocity3d](https://luminocity3d.org/WorldPopDen/#3/20.00/10.00).
 
 1. Турция и европейские страны:
+![image](https://github.com/user-attachments/assets/1977f4e3-2087-4e65-b907-d705e41c1835)
 
-2. Америка:
+2. США:
+![image](https://github.com/user-attachments/assets/96d2988f-e256-491f-acc7-06ac7b14da97)
 
-3. Остальные:
+3. Южная Америка:
+![image](https://github.com/user-attachments/assets/7d387b6d-f260-461b-bd8c-4053f084e1d9)
+
+Общая карта расположения ДЦ: 
+![image](https://github.com/user-attachments/assets/c0380f85-f238-4ae6-b6c2-a796ecda554d)
+
+
+
+
