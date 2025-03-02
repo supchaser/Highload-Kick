@@ -221,7 +221,7 @@ pie
 
 - Расчет распределение запросов:
 
-Всего ДЦ: 32 шт. [Карта](https://yandex.ru/maps/?um=constructor%3A1f080090fb3358f7959eb45b6587b01d561afd545f5b63896166780784fb387a&source=constructorLink)
+Всего ДЦ: 32 шт.
 
 Каждый ДЦ должен:
 
