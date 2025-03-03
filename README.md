@@ -215,7 +215,7 @@ pie
 
 Общая карта расположения ДЦ:
 
-![image](https://github.com/user-attachments/assets/f49f393c-4458-43d3-a8de-1ee4431072b5)
+![image](https://github.com/user-attachments/assets/90142983-9e5d-4bfa-9f61-ce834cd18d5b)
 
 [Карта](https://yandex.ru/maps/?um=constructor%3A1f080090fb3358f7959eb45b6587b01d561afd545f5b63896166780784fb387a&source=constructorLink)
 
