@@ -204,30 +204,30 @@ pie
 
 1. Турция и европейские страны:
 
-![image](https://github.com/user-attachments/assets/582e38e4-2a9a-4506-a63a-479ef212823b)
+![image](https://github.com/user-attachments/assets/7813cfcb-e1bb-4155-81cc-6716a8b4a5d7)
 
 2. США:
 
-![image](https://github.com/user-attachments/assets/3d8de6a4-0595-42c7-be02-29c22aa21970)
+![image](https://github.com/user-attachments/assets/fbbe0850-3c9a-4cd9-b4ea-fc00897f3a57)
 
 3. Южная Америка:
 
-![image](https://github.com/user-attachments/assets/7d387b6d-f260-461b-bd8c-4053f084e1d9)
+![image](https://github.com/user-attachments/assets/8b78de58-1109-42db-beef-34fadfb1665d)
 
 Общая карта расположения ДЦ:
 
-![image](https://github.com/user-attachments/assets/90142983-9e5d-4bfa-9f61-ce834cd18d5b)
+![image](https://github.com/user-attachments/assets/ee19b422-45fd-4488-adea-cf57542e9c7c)
 
 [Карта](https://yandex.ru/maps/?um=constructor%3A1f080090fb3358f7959eb45b6587b01d561afd545f5b63896166780784fb387a&source=constructorLink)
 
 - Расчет распределение запросов:
 
-Всего ДЦ: 24 шт.
+Всего ДЦ: 12 шт.
 
 Каждый ДЦ должен:
 
-- обслуживать одинаковое среднее кол-во DAU: 3.6 млн / 24 = 150000 пользователей
-- иметь одинаковое кол-во RPS: 315/24 = 13.125 -> 14. Тогда пиковый RPS, который может приходиться на один ДЦ: 14 \* 2 = 28.
+- обслуживать одинаковое среднее кол-во DAU: 3.6 млн / 12 = 300000 пользователей
+- иметь одинаковое кол-во RPS: 315/12 = 26.25. Тогда пиковый RPS, который может приходиться на один ДЦ: 26.25 \* 2 = 52.5.
 
 - Схема DNS балансировки:
 
