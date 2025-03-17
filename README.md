@@ -259,6 +259,158 @@ pie
 
 ## 5. Логическая схема БД
 
+### Иллюстрация
+
 ![image](https://github.com/user-attachments/assets/2022a637-0225-4a13-99f3-da69874ed5a8)
 
-[Описание схемы](https://dbdiagram.io/d/Highload-67d7d99175d75cc84454e076)
+[Схема](https://dbdiagram.io/d/Highload-67d7d99175d75cc84454e076)
+
+| Таблица         | Описание                                                                        |
+| --------------- | ------------------------------------------------------------------------------- |
+| user            | Хранит данные о пользователе                                                    |
+| channel         | Хранит данные о канале, который пренадлежит пользователю                        |
+| stream          | Хранит данные о трансляциях, которые были когда либо проведены на данном канале |
+| video           | Хранит ссылки на записи трансляций данного канала                               |
+| сlips           | Хранит ссылки на записи клипов для данной трансляции                            |
+| subscription    | Хранит данные о платных подписках пользователя                                  |
+| follow          | Хранит данные о бесплатных подписках пользователя                               |
+| message         | Хранит данные о сообщениях в чате для данного стрима                            |
+| gif             | Хранит данные о всех гифках, которые есть на платформе Kick                     |
+| category        | Хранит данные о всех категориях, которые есть на платформе Kick                 |
+| tag             | Хранит данные о всех тегах, которые есть на платформе Kick                      |
+| banner          | Хранит данные баннерах канала                                                   |
+| message_gif     | Связующая таблица для создания связи многие ко многим                           |
+| stream_category | Связующая таблица для создания связи многие ко многим                           |
+
+> **Примечание:**
+>
+> - Таблица user: monetization будет сигнализировать о том есть ли у стримера монетизация
+> - Для таблиц video, clips, gif, banner будет хранить source url на метаданные
+
+### Размер данных
+
+#### user
+
+- user_id: 32 байта
+- nickname: 25 байт
+- email: 35 байт
+- password_hash: 256 байт
+- monetization: 1 байт
+- birth_date date: 4 байта
+- created_at: 8 байт
+- updated_at: 8 байт
+  Сумма: 369 байт; всего: 369 \* 50 млн = 17,18 ГБ.
+
+#### channel
+
+- channel_id: 32 байта
+- user_id: 32 байта
+- description: 500 байт
+- avatar_url: 128 байт
+- head_banner_url: 128 байт
+- offline_banner_url: 128 байт
+- created_at: 8 байт
+- updated_at: 8 байт
+  Сумма: 964 байт; всего: 964 \* 50 млн = 44,89 ГБ.
+
+#### stream
+
+- stream_id: 32 байта
+- channel_id: 32 байта
+- title: 140 байт
+- stream_url: 128 байт
+- key: 128 байт
+- created_at: 8 байт
+- ended_at: 8 байт
+  Сумма: 476 байт; всего: 476 \* 50 млн = 22,17 ГБ.
+
+#### category
+
+- category_id: 32 байта
+- name: 20 байт
+- created_at: 8 байт
+- updated_at: 8 байт
+  Сумма: 68 байт; всего: 68 \* 10000 = 680 КБ.
+
+#### stream_category
+
+- stream_id: 32 байта
+- category_id: 32 байта
+  Сумма: 64 байт; всего: 64 \* 100 млн = 6.4 ГБ.
+
+#### video
+
+- video_id: 32 байта
+- channel_id: 32 байта
+- stream_id: 32 байта
+- title: 140 байт
+- source_url: 128 байт
+- uploaded_at: 8 байты
+  Сумма: 372 байт; всего: 372 \* 500 млн = 6.4 ГБ.
+
+#### clips
+
+- clip_id: 32 байта
+- stream_id: 32 байта
+- channel_id: 32 байта
+- title: 50 байт
+- stream_url: 128 байт
+- source_url: 128 байт
+- uploaded_at: 8 байт
+
+#### subscription
+
+- subscription_id: 32 байта
+- user_id: 32 байта
+- channel_id: 32 байта
+- start_date: 8 байт
+- end_date: 8 байт
+- created_at: 8 байт
+
+#### follow
+
+- follow_id: 32 байта
+- user_id: 32 байта
+- channel_id: 32 байта
+- followed_at: 8 байт
+
+#### message
+
+- message_id: 32 байта
+- user_id: 32 байта
+- stream_id: 32 байта
+- message: 500 байт
+- gif_id: 32 байта
+- created_at: 8 байт
+
+#### gif
+
+- gif_id: 32 байта
+- gif_name: 20 байт
+- source_url: 128 байт
+
+#### message_gif
+
+- message_id: 32 байта
+- gif_id: 32 байта
+
+#### tag
+
+- tag_id: 32 байта
+- tag_name: 20 байт
+- created_at: 8 байт
+
+#### stream_tag
+
+- stream_id: 32 байта
+- tag_id: 32 байта
+
+#### banner
+
+- banner_id: 32 байта
+- channel_id: 32 байта
+- name: 100 байт
+- description: 1000 байт
+- source_url: 128 байт
+- created_at: 8 байт
+- updated_at: 8 байт
