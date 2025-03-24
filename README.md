@@ -332,12 +332,6 @@ pie
 - updated_at: 8 байт
   Сумма: 68 байт; всего: 68 \* 10000 = 680 КБ.
 
-#### stream_category
-
-- stream_id: 32 байта
-- category_id: 32 байта
-  Сумма: 64 байт; всего: 64 \* 100 млн = 6.4 ГБ.
-
 #### video
 
 - video_id: 32 байта
@@ -394,24 +388,12 @@ pie
 - source_url: 128 байт
   Сумма: 180 байт; всего: 180 \* 100 тыс = 17,17 МБ.
 
-#### message_gif
-
-- message_id: 32 байта
-- gif_id: 32 байта
-  Сумма: 64 байт; всего: 64 \* 300 тыс = 18,31 МБ.
-
 #### tag
 
 - tag_id: 32 байта
 - tag_name: 20 байт
 - created_at: 8 байт
   Сумма: 60 байт; всего: 60 \* 100 = 600 Б.
-
-#### stream_tag
-
-- stream_id: 32 байта
-- tag_id: 32 байта
-  Сумма: 64 байт; всего: 64 \* 150 млн = 9.6 ГБ.
 
 #### banner
 
@@ -423,5 +405,21 @@ pie
 - created_at: 8 байт
 - updated_at: 8 байт
   Сумма: 1308 байт; всего: 1308 \* 100 млн  = 12,18 ГБ.
+
+#### stream_counter
+
+- counter_id: 32 байта
+- view_count: 4 байта
+- stream_id: 32 байта
+- created_at: 8 байт
+- updated_at: 8 байт
+
+#### recommendation
+
+- recommendation_id: 32 байта
+- user_id: 32 байта
+- content_type: 20 байт
+- content_id: 32 байта
+- created_at: 8 байт
 
 Суммарный объем БД: ~500 ГБ.
