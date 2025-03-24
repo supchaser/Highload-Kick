@@ -261,7 +261,7 @@ pie
 
 ### Иллюстрация
 
-![Highload](https://github.com/user-attachments/assets/c3ea42a0-47bd-4565-b37c-871c05af07fb)
+![highload - public](https://github.com/user-attachments/assets/00968281-7dac-4349-bb12-0a3931ff03bf)
 
 [Схема](https://dbdiagram.io/d/Highload-67d7d99175d75cc84454e076)
 
