@@ -429,7 +429,7 @@ pie
 | Таблица        | СУБД          | Индексы             | Шардирование                |
 | -------------- | ------------- | ------------------- | --------------------------- |
 | user           | PostgreSQL    | email, nickname     | user_id                     |
-| auth_session   | Tarantool     |                     |                             |
+| auth_session   | Tarantool     |                     | Шардинг хешами              |
 | channel        | PostgreSQL    | user_id             | channel_id                  |
 | stream         | PostgreSQL    | channel_id          | channel_id                  |
 | video          | PostgreSQL    | channel_id          | channel_id                  |
@@ -441,6 +441,6 @@ pie
 | category       | PostgreSQL    | name                |                             |
 | tag            | PostgreSQL    | tag_name            |                             |
 | banner         | PostgreSQL    | channel_id          | channel_id                  |
-| stream_counter | Tarantool     |                     | stream_id                   |
+| stream_counter | Tarantool     |                     | Шардинг хешами              |
 | recommendation | Elasticsearch |                     | Автоматическое шардирование |
 | Облако         | HDFS          |                     |                             |
