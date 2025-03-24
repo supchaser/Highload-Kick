@@ -404,7 +404,7 @@ pie
 - source_url: 128 байт
 - created_at: 8 байт
 - updated_at: 8 байт
-  Сумма: 1308 байт; всего: 1308 \* 100 млн  = 12,18 ГБ.
+  Сумма: 1308 байт; всего: 1308 \* 100 млн = 12,18 ГБ.
 
 #### stream_counter
 
@@ -423,3 +423,24 @@ pie
 - created_at: 8 байт
 
 Суммарный объем БД: ~500 ГБ.
+
+## 6. Физическая схема БД
+
+| Таблица        | СУБД          | Индексы             | Шардирование                |
+| -------------- | ------------- | ------------------- | --------------------------- |
+| user           | PostgreSQL    | email, nickname     | user_id                     |
+| auth_session   | Tarantool     |                     |                             |
+| channel        | PostgreSQL    | user_id             | channel_id                  |
+| stream         | PostgreSQL    | channel_id          | channel_id                  |
+| video          | PostgreSQL    | channel_id          | channel_id                  |
+| сlips          | PostgreSQL    | stream_id           | channel_id                  |
+| subscription   | PostgreSQL    | user_id, channel_id | user_id                     |
+| follow         | Cassandra     | channel_id, user_id | Автоматическое шардирование |
+| message        | Cassandra     | user_id, message_id | Автоматическое шардирование |
+| gif            | PostgreSQL    | gif_name            |                             |
+| category       | PostgreSQL    | name                |                             |
+| tag            | PostgreSQL    | tag_name            |                             |
+| banner         | PostgreSQL    | channel_id          | channel_id                  |
+| stream_counter | Tarantool     |                     | stream_id                   |
+| recommendation | Elasticsearch |                     | Автоматическое шардирование |
+| Облако         | HDFS          |                     |                             |
