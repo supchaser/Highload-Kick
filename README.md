@@ -488,23 +488,47 @@ pie
 
 Суммарный объем БД: ~511 ГБ.
 
+### Особенности распределения нагрузки по ключам
+
 ## 6. Физическая схема БД
 
-| Таблица        | СУБД          | Индексы             | Шардирование                |
-| -------------- | ------------- | ------------------- | --------------------------- |
-| user           | PostgreSQL    | email, nickname     | user_id                     |
-| auth_session   | Tarantool     |                     | Шардинг хешами              |
-| channel        | PostgreSQL    | user_id             | channel_id                  |
-| stream         | PostgreSQL    | channel_id          | channel_id                  |
-| video          | PostgreSQL    | channel_id          | channel_id                  |
-| сlips          | PostgreSQL    | stream_id           | channel_id                  |
-| subscription   | PostgreSQL    | user_id, channel_id | user_id                     |
-| follow         | Cassandra     | channel_id, user_id | Автоматическое шардирование |
-| message        | Cassandra     | user_id, message_id | Автоматическое шардирование |
-| gif            | PostgreSQL    | gif_name            |                             |
-| category       | PostgreSQL    | name                |                             |
-| tag            | PostgreSQL    | tag_name            |                             |
-| banner         | PostgreSQL    | channel_id          | channel_id                  |
-| stream_counter | Tarantool     |                     | Шардинг хешами              |
-| recommendation | Elasticsearch |                     | Автоматическое шардирование |
-| Облако         | HDFS          |                     |                             |
+| Таблица             | СУБД          | Индексы             | Шардирование       | Резервирование                   |
+| ------------------- | ------------- | ------------------- | ------------------ | -------------------------------- |
+| user                | Cassandra     | email, nickname     | user_id            | Snapshots                        |
+| session             | Redis         | -                   | Шардинг по user_id | Backup                           |
+| channel             | Cassandra     | user_id             | channel_id         | Snapshots                        |
+| stream              | Cassandra     | channel_id          | channel_id         | Snapshots                        |
+| video               | Cassandra     | channel_id          | channel_id         | Snapshots                        |
+| сlips               | Cassandra     | stream_id           | channel_id         | Snapshots                        |
+| paid_subscription   | PostgreSQL    | user_id, channel_id | user_id            | Snapshots                        |
+| follow              | Cassandra     | channel_id, user_id | user_id            | Snapshots                        |
+| message             | Cassandra     | user_id, message_id | user_id            | Snapshots                        |
+| gif                 | PostgreSQL    | gif_name            | -                  | Репликация по схеме master-slave |
+| category            | PostgreSQL    | name                | -                  | Репликация по схеме master-slave |
+| tag                 | PostgreSQL    | tag_name            | -                  | Репликация по схеме master-slave |
+| banner              | PostgreSQL    | channel_id          | channel_id         | Репликация по схеме master-slave |
+| stream_counter      | ClickHouse    | stream_id           | stream_id          | clickhouse-backup                |
+| channel_statistics  | ClickHouse    | channel_id          | channel_id         | clickhouse-backup                |
+| category_statistics | ClickHouse    | category_id         | category_id        | clickhouse-backup                |
+| user_activity       | PostgerSQL    | user_id             | user_id            | Репликация по схеме master-slave |
+| user_preferences    | PostgreSQL    | user_id             | user_id            | Репликация по схеме master-slave |
+| channel_search      | ElasticSearch | channel_id          | channel_id         | Snapshots                        |
+| category_search     | ElasticSearch | category_id         | category_id        | Snapshots                        |
+| recommendation      | Tarantool     | user_id             | user_id            | Репликация по схеме master-slave |
+| hdfs                | HDFS          | -                   | -                  | Backup                           |
+
+### Обоснование выбора СУБД
+
+- ClickHouse: для табличек `stream_counter`, `channel_statistics`,`category_statistics`,`user_activity` подавляющее большинство запросов будет именно на чтение, ClickHouse позволяет добавлять и обновлять данные достаточно большими пактами (> 1000 строк), также при чтении используется достаточно большое количество строк в базе данных, и небольшой набор столбцов или полей, выбранных из общего сета. Также у ClickHouse более простая интеграция по сравнению с другими OLAP базами. Есть поддержка SQL, что позволяет формировать сложные запросы для аналитики. Возможности обработки данных в реальном времени: ClickHouse способна генерировать мгновенные результаты даже при наличии миллиардов строк во введенных данных.
+
+- PostgreSQL: для относительно небольших таблиц `paid_subscription`, `gif`, `category`, `tag`, `banner`, `user_activity`, `user_preferences` используем PostrgreSQL как СУБД с большим количеством возможностей и механизмов.
+
+- Cassandra: для объемных таблиц `user`, `channel`, `stream`, `video`, `сlips`, `follow`, `message` выберем NoSQL базу данных Cassandra ввиду того, что нам нужно записывать и хранить большой объем данных по этим таблицам.
+
+- ElasticSearch: для поисковых таблиц `channel_search` и `category_search` используем ElasticSearch т.к. нужен полнотекстовый поиск для обеспечения качества. Также данная СУБД предоставляет возможность горизонтального масштабирования при росте данных (ожидается в нашем стрименговом сервисе).
+
+- Tarantool: для `recommendation` используем Tarantool, т.к. нам необходимы низкие задержки на чтение/запись для рекомендаций.
+
+- Redis: для `session` используем СУБД Redis для хранения сессии.
+
+- HDFS: используем для хранения больших файлов.
