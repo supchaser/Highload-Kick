@@ -261,7 +261,7 @@ pie
 
 ### Иллюстрация
 
-![image](https://github.com/user-attachments/assets/b265f144-f836-4d74-b681-4f75517e826c)
+![Highload](https://github.com/user-attachments/assets/945ea4f5-4bbd-4dd4-9fa9-50fb959a4bbc)
 
 [Схема](https://dbdiagram.io/d/Highload-67d7d99175d75cc84454e076)
 
@@ -284,6 +284,8 @@ pie
 | channel_statistics  | Хранит статистику по каналу                                                     |
 | category_statistics | Хранит статистику по категориям                                                 |
 | user_activity       | Хранит данные по активности юзера на стриме, видео или клипе                    |
+| user_activity_aggreagte       | Хранит съогрегированные данные по user_id                     |
+| watch_history | Хранит данные о времени просмотра пользователем стрима, клипа или видео |
 | user_preferences    | Хранит данные о предпочтениях пользователя с уровнем вовлеченности              |
 | recommendation      | Хранит данные о конкретных рекомендациях для пользователя                       |
 | channel_search      | Таблица для поиска каналов                                                      |
@@ -462,7 +464,7 @@ pie
 - unique_viewers: 8 байт
 - created_at: 8 байт
 - updated_at: 8 байт
-  Сумма: 112 байта; всего: 112 \* 10000 ~= 0 ГБ.
+  Сумма: 112 байта; всего: 112 \* 10000 ~ 0 ГБ.
 
 #### user_activity
 
