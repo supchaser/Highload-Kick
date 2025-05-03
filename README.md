@@ -830,14 +830,16 @@ pie
 
 ## Конфигурации сервисов
 
-| Сервис        | Хостинг           | Конфигурация                                                          | Cores | Cnt                          | Покупка ($) | Аренда ($/мес) |
-| ------------- | ----------------- | --------------------------------------------------------------------- | ----- | ---------------------------- | ----------- | -------------- |
-| kubenode      | own               | 2×AMD EPYC 6338 (32 C/64 T), 512 GB RAM, 2×4 TB NVMe, 2×25 GbE        | 64    | 60 (12 ЦОД × 5)              | 14 500      | 242            |
-| postgresql    | own               | 2×AMD EPYC 7543 (32 C/64 T), 512 GB RAM, 4×2 TB NVMe, 2×25 GbE        | 64    | 6 (3 ЦОД × 2)                | 16 000      | 267            |
-| clickhouse    | own               | 2×AMD EPYC 7543, 1 TB RAM, 6×4 TB NVMe, 2×25 GbE                      | 64    | 4 (2 ЦОД × 2)                | 18 000      | 300            |
-| tarantool     | VM (Scaleway)     | 16 vCPU, 64 GB RAM, 2×200 GB SSD, 2×10 GbE                            | 16    | 8 (динамически по нагрузке)  | –           | 80             |
-| elasticsearch | own               | 2×AMD EPYC 7543, 512 GB RAM, 4×2 TB NVMe, 2×25 GbE                    | 64    | 6 (3 ЦОД × 2)                | 16 000      | 267            |
-| redis         | VM (DigitalOcean) | 16 vCPU, 128 GB RAM, 4×400 GB NVMe, 10 GbE                            | 16    | 6 (динамически по нагрузке)  | –           | 120            |
-| cassandra     | own               | 2×AMD EPYC 7543, 256 GB RAM, 4×2 TB NVMe, 2×25 GbE                    | 64    | 8 (3 ЦОД × 2 + 1 запасная)   | 15 000      | 250            |
-| s3            | own               | 2×Intel Xeon Silver, 256 GB RAM, 12×16 TB HDD + 4×4 TB NVMe, 2×25 GbE | 32    | 12 (12 ЦОД × 1)              | 18 000      | 300            |
-| envoy         | VM (Yandex Cloud) | 8 vCPU, 16 GB RAM, 2×100 GB SSD, 2×10 GbE                             | 8     | 24 (динамически по нагрузке) | –           | 48             |
+| Сервис        | Хостинг           | Конфигурация                                                          | Cores | GPUs            | Cnt                        | Покупка ($) | Аморт. ($/мес) |
+| ------------- | ----------------- | --------------------------------------------------------------------- | ----- | --------------- | -------------------------- | ----------- | -------------- |
+| kubenode      | own               | 2×AMD EPYC 6338 (32 C/64 T), 512 GB RAM, 2×4 TB NVMe, 2×25 GbE        | 64    | –               | 60 (12 ЦОД × 5)            | 14 500      | 242            |
+| postgresql    | own               | 2×AMD EPYC 7543 (32 C/64 T), 512 GB RAM, 4×2 TB NVMe, 2×25 GbE        | 64    | –               | 6 (3 ЦОД × 2)              | 16 000      | 267            |
+| clickhouse    | own               | 2×AMD EPYC 7543, 1 TB RAM, 6×4 TB NVMe, 2×25 GbE                      | 64    | –               | 4 (2 ЦОД × 2)              | 18 000      | 300            |
+| stream-gpu    | own               | 2×AMD EPYC 7543, 2×NVIDIA A100 40 GB, 1 TB RAM, 6×4 TB NVMe, 2×25 GbE | 64    | 2×A100 per node | 24 (12 ЦОД × 2)            | 60 000      | 1 000          |
+| tarantool     | VM (Scaleway)     | 16 vCPU, 64 GB RAM, 2×200 GB SSD, 2×10 GbE                            | 16    | –               | 8 (динамически)            | –           | 80             |
+| elasticsearch | own               | 2×AMD EPYC 7543, 512 GB RAM, 4×2 TB NVMe, 2×25 GbE                    | 64    | –               | 6 (3 ЦОД × 2)              | 16 000      | 267            |
+| redis         | VM (DigitalOcean) | 16 vCPU, 128 GB RAM, 4×400 GB NVMe, 10 GbE                            | 16    | –               | 6 (динамически)            | –           | 120            |
+| cassandra     | own               | 2×AMD EPYC 7543, 256 GB RAM, 4×2 TB NVMe, 2×25 GbE                    | 64    | –               | 8 (3 ЦОД × 2 + 1 запасная) | 15 000      | 250            |
+| s3            | own               | 2×Intel Xeon Silver, 256 GB RAM, 12×16 TB HDD + 4×4 TB NVMe, 2×25 GbE | 32    | –               | 12 (12 ЦОД × 1)            | 18 000      | 300            |
+| envoy         | VM (Yandex Cloud) | 8 vCPU, 16 GB RAM, 2×100 GB SSD, 2×10 GbE                             | 8     | –               | 24 (динамически)           | –           | 48             |
+| api gateway   | VM (Yandex Cloud) | 8 vCPU, 16 GB RAM, 2×100 GB SSD, 2×10 GbE                             | 8     | –               | 24 (динамически)           | –           | 48             |
